@@ -2,7 +2,7 @@
 
 > **This project is designed for defensive cybersecurity and privacy education. It uses synthetic or voluntarily provided assessment responses and does not scrape, track, or profile real social-media users.**
 
-![Dashboard](screenshots/18_privacy_dashboard.png)
+![Dashboard](screenshots/privacy_dashboard.png)
 
 ## Overview
 - A privacy-risk assessment platform for social-media exposure.
