@@ -1,32 +1,104 @@
 # Project Report - Social Media Privacy Risk Assessment Framework
 
 ## Abstract
-This project presents a defensive, privacy-by-design framework that evaluates social-media exposure from self-reported settings and behaviours. A 53-question questionnaire feeds a transparent scoring engine producing category scores, an overall 0-100 risk score, ranked findings, personalised recommendations and a what-if simulator. A 1,200-record synthetic dataset powers an analytics dashboard. The system stores no personal data and is explicitly educational.
+- A defensive, privacy-by-design framework that evaluates social-media exposure from self-reported settings and behaviours.
+- A 53-question questionnaire feeds a transparent scoring engine.
+- Outputs:
+  - Category scores
+  - An overall 0-100 risk score
+  - Ranked findings
+  - Personalised recommendations
+  - A what-if simulator
+- A 1,200-record synthetic dataset powers an analytics dashboard.
+- The system stores no personal data and is explicitly educational.
 
 ## Introduction & Problem Statement
-Oversharing and weak settings enable doxxing, impersonation and social engineering, yet individuals rarely get structured, understandable feedback about their exposure. Hiring teams, schools and organisations increasingly care about online footprints and data minimisation.
+- Oversharing and weak settings enable doxxing, impersonation and social engineering.
+- Individuals rarely get structured, understandable feedback about their exposure.
+- Hiring teams, schools and organisations increasingly care about online footprints and data minimisation.
 
 ## Objectives
-Assess exposure across ten areas; give explainable scores; recommend prioritised fixes; simulate improvements; educate; and follow privacy-by-design without scraping or profiling anyone.
+- Assess exposure across ten areas.
+- Give explainable scores.
+- Recommend prioritised fixes.
+- Simulate improvements.
+- Educate users.
+- Follow privacy-by-design without scraping or profiling anyone.
 
 ## Background
-**Privacy vs security** (see docs/01). **Digital footprint:** active vs passive. **Social engineering:** exploitation of trust using public context.
-**Existing approaches:** vendor privacy check-ups (platform-specific, unscored), generic cyber-hygiene quizzes (little on exposure), and OSINT tools (invasive; deliberately *not* used here).
+- **Privacy vs security:** see docs/01.
+- **Digital footprint:** active (shared on purpose) vs passive (collected by use).
+- **Social engineering:** exploitation of trust using public context.
+- **Existing approaches:**
+  - Vendor privacy check-ups: platform-specific and unscored.
+  - Generic cyber-hygiene quizzes: little coverage of exposure.
+  - OSINT tools: invasive, so deliberately **not** used here.
 
 ## Proposed Framework
-Architecture: questionnaire → validation → feature extraction → category analyzers → scoring → findings → recommendations → dashboard → report (docs/02). **Questionnaire design:** setting/behaviour questions only; NOT SURE treated as partial risk. **Synthetic dataset:** 1,200 records generated from a hidden awareness variable per profile so answers correlate realistically; scored by the same engine. **Feature engineering:** `extract_privacy_features()` maps answers to risk 0-1 with weights. **Category analysis & scoring:** weighted means; overall via configurable weights; bands 0-20/21-40/41-70/71-100. **Findings engine:** risk ≥ 0.5 → finding, ranked by exact points. **Recommendation engine:** IMMEDIATE / IMPORTANT / GOOD PRACTICE. **Simulator:** re-scores a copy with chosen fixes. **Account security, third-party apps, location privacy and digital-footprint analysis** are implemented as questionnaire categories G, H, C, J with dedicated findings and advice.
+- **Architecture:** questionnaire → validation → feature extraction → category analyzers → scoring → findings → recommendations → dashboard → report (see docs/02).
+- **Questionnaire design:** questions ask about settings and behaviours only; "NOT SURE" counts as partial risk.
+- **Synthetic dataset:**
+  - 1,200 records.
+  - Generated from a hidden awareness variable per profile, so answers correlate realistically.
+  - Scored by the same engine as the app.
+- **Feature engineering:** `extract_privacy_features()` maps each answer to a risk value (0-1) with a weight.
+- **Category analysis and scoring:**
+  - Weighted means.
+  - Overall score from configurable weights.
+  - Bands: 0-20, 21-40, 41-70, 71-100.
+- **Findings engine:** risk ≥ 0.5 raises a finding, ranked by exact points.
+- **Recommendation engine:** IMMEDIATE / IMPORTANT / GOOD PRACTICE.
+- **Simulator:** re-scores a copy of the answers with the chosen fixes.
+- **Specialised analysis areas:**
+  - Account security (category G)
+  - Third-party apps (category H)
+  - Location privacy (category C)
+  - Digital footprint (category J)
 
 ## Privacy Dashboard & Privacy by Design
-Dense 12-column dashboard: KPIs, radar, category bars, gauge, weaknesses, controls adoption, footprint, improvement comparison, biggest wins, heat-map, distribution, histogram, trend, segments, action plan. Privacy by design table in docs/02.
+- **Dashboard:** dense 12-column layout with:
+  - KPIs, radar, category bars and gauge
+  - Weaknesses, controls adoption and footprint
+  - Improvement comparison, biggest wins and heat-map
+  - Distribution, histogram, trend and segments
+  - Action plan
+- **Privacy by design:** the full table is in docs/02.
 
 ## Testing & Results
-54 tests pass (docs/TEST_REPORT.md). Synthetic cohort (seed 42): ~18% LOW, ~26% MODERATE, ~42% HIGH, ~13% CRITICAL; average ≈ 44. Fixing only IMMEDIATE items lowers the cohort average from about 44 to about 32; fixing everything to about 3. The fictional demo profile scores 79 (CRITICAL) and 50 (HIGH) after the brief's listed improvements (see DEMO_RESULTS.md).
+- **Tests:** 54 pass (see docs/TEST_REPORT.md).
+- **Synthetic cohort (seed 42):**
+  - LOW ≈ 18%
+  - MODERATE ≈ 26%
+  - HIGH ≈ 42%
+  - CRITICAL ≈ 13%
+  - Average ≈ 44
+- **Effect of fixes on the cohort:**
+  - Fixing only IMMEDIATE items: average falls from about 44 to about 32.
+  - Fixing everything: average falls to about 3.
+- **Demo profile:** 79 (CRITICAL) → 50 (HIGH) after the brief's listed improvements (see DEMO_RESULTS.md).
 
 ## Limitations
-Self-reported data can be inaccurate; weights/thresholds are assumptions, not empirically calibrated; synthetic data do not represent real populations; platform settings differ and change; the model measures exposure categories, not actual compromise likelihood.
+- Self-reported data can be inaccurate.
+- Weights and thresholds are assumptions, not empirically calibrated.
+- Synthetic data does not represent real populations.
+- Platform settings differ and change.
+- The model measures exposure categories, not the likelihood of actual compromise.
 
 ## Future Scope
-Platform-specific checklists, configurable organisational policies, awareness quizzes, privacy-maturity scoring, teen/family safety modules, enterprise training and anonymous trend reporting, model calibration, localisation, accessibility, report comparison over time, client-side-only mode. No invasive monitoring or scraping.
+- Platform-specific checklists
+- Configurable organisational policies
+- Awareness quizzes
+- Privacy-maturity scoring
+- Teen and family safety modules
+- Enterprise training
+- Anonymous trend reporting
+- Model calibration
+- Localisation and accessibility
+- Report comparison over time
+- Client-side-only mode
+- No invasive monitoring or scraping
 
 ## Conclusion
-The framework shows that privacy exposure can be measured, explained and reduced in a way that is transparent, ethical and useful for learning, while itself practising data minimisation.
+- Privacy exposure can be measured, explained and reduced.
+- The approach is transparent, ethical and useful for learning.
+- The framework itself practises data minimisation.

@@ -23,7 +23,11 @@ Optional anonymised aggregates → Analytics (synthetic cohort CSV)
 | Charts | Custom SVG (works offline) - Chart.js is a drop-in alternative | Recharts / Chart.js |
 | Reports | HTML → browser "Save as PDF" | server-side PDF |
 
-**Advantages (A):** one command to run, nothing to build, easy to read. **Limits:** no type-checked API docs, manual state handling. **Recommendation for students:** A first (this repo), then port the API to FastAPI for auto-docs and a React UI.
+**Option A trade-offs:**
+
+- **Advantages:** one command to run, nothing to build, easy to read.
+- **Limits:** no type-checked API docs, manual state handling.
+- **Recommendation for students:** start with A (this repo), then port the API to FastAPI and the UI to React.
 
 ## Folder guide
 | Path | Purpose |
@@ -49,7 +53,20 @@ category_score = 100 × Σ(weight_q × risk_q) / Σ(weight_q)
 overall        = Σ(category_weight × category_score) / Σ(category_weight)
 points_q       = category_weight/Σ × weight_q×risk_q/Σ(weight in category) × 100     (exact contribution)
 ```
-Default category weights: Profile 10, Personal Info 15, Location 15, Content 10, Connections 10, Tagging 5, Account Security 15, Third-Party 5, Social Engineering 10, Footprint 5 (=100). Override with `CATEGORY_WEIGHTS_JSON`. *Weights and thresholds are educational assumptions that must be validated before professional use.*
+Default category weights (sum = 100):
+
+- Profile 10
+- Personal Info 15
+- Location 15
+- Content 10
+- Connections 10
+- Tagging 5
+- Account Security 15
+- Third-Party 5
+- Social Engineering 10
+- Footprint 5
+
+Override with `CATEGORY_WEIGHTS_JSON`. *Weights and thresholds are educational assumptions that must be validated before professional use.*
 
 ## Database (privacy-first)
 ```
@@ -73,7 +90,13 @@ No columns for phone, email, address, birth date, password, exact location, mess
 | `GET /api/privacy-checklist` | - | the 18-item checklist | |
 | `GET /api/questionnaire`, `GET /api/demo`, `POST /api/metadata/inspect|strip` | - | questionnaire, fictional demo profile, local image tools | |
 
-**Authentication / authorisation:** there are no accounts (data minimisation). The unguessable assessment id (random token) acts as a capability: only its holder can read/delete. **Rate limiting:** 120 req/min and 20 writes/min per IP, in memory. **Errors:** generic JSON, no stack traces, no echo of submitted values. **Privacy:** answers are used in memory and discarded; the simulator receives answers from the browser tab (sessionStorage) instead of the server remembering them.
+**API security notes:**
+
+- **Authentication / authorisation:** there are no accounts (data minimisation). The unguessable assessment id (a random token) acts as a capability: only its holder can read or delete.
+- **Rate limiting:** 120 requests/min and 20 writes/min per IP, kept in memory.
+- **Errors:** generic JSON; no stack traces and no echo of submitted values.
+- **Privacy:** answers are used in memory and discarded.
+- **Simulator:** it receives answers from the browser tab (sessionStorage), so the server never remembers them.
 
 ## Privacy by design in this app
 | Principle | Implementation |

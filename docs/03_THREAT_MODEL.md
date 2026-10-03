@@ -25,4 +25,17 @@ Likelihood and impact are **educational estimates**; real risk depends on contex
 | Unknown connections accepted | High | Medium |
 
 ## Social-engineering awareness: how oversharing can increase risk
-Scammers may use **publicly available context** to make a message feel genuine. Categories of information that add believability: **employer** (fake "HR/IT" notices), **college** (fake "scholarship/exam" messages), **travel plans** (fake "emergency abroad" requests), **family references** (urgent "relative needs help" stories), **interests** (tailored giveaways), **public events** (fake ticket/refund offers). Defence: share less publicly, verify through a second channel, never share verification codes, and treat urgency as a red flag. This project intentionally contains no message templates for attackers.
+- Scammers may use **publicly available context** to make a message feel genuine.
+- Information that adds believability:
+  - **Employer:** fake "HR/IT" notices
+  - **College:** fake "scholarship/exam" messages
+  - **Travel plans:** fake "emergency abroad" requests
+  - **Family references:** urgent "relative needs help" stories
+  - **Interests:** tailored giveaways
+  - **Public events:** fake ticket/refund offers
+- Defences:
+  - Share less publicly.
+  - Verify through a second channel.
+  - Never share verification codes.
+  - Treat urgency as a red flag.
+- This project intentionally contains no message templates for attackers.

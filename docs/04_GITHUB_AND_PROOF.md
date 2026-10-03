@@ -1,8 +1,18 @@
 # 4. GitHub Upload Strategy, Proof Checklist, Resume & LinkedIn
 
 **Repository name:** `Social-Media-Privacy-Risk-Assessment`
-**Description:** Privacy-focused cybersecurity framework for assessing social-media exposure, account-security practices, social-engineering risk, digital-footprint risk, and personalized privacy improvements using synthetic/self-reported data.
-**Topics:** cybersecurity, privacy, social-media-privacy, privacy-risk, security-awareness, python, flask, fastapi, digital-footprint, risk-assessment, grc, privacy-by-design, defensive-security
+**Description:**
+
+- Privacy-focused cybersecurity framework for assessing social-media exposure.
+- Covers account-security practices, social-engineering risk and digital-footprint risk.
+- Gives personalised privacy improvements.
+- Uses synthetic or self-reported data only.
+**Topics:**
+
+- cybersecurity, privacy, social-media-privacy, privacy-risk
+- security-awareness, python, flask, fastapi
+- digital-footprint, risk-assessment, grc
+- privacy-by-design, defensive-security
 
 ## Exact Git commands
 ```bash
@@ -54,8 +64,41 @@ Run `python -m backend.app`, then capture with these filenames in `screenshots/`
 * Engineered a **what-if improvement simulator and analytics dashboard** over 1,200 synthetic profiles; validated with **54 automated tests** (scoring boundaries, XSS, injection, rate limiting, data-deletion).
 * Applied **GRC and data-minimisation principles**: stored only scores and finding types (never answers or PII), added retention limits, strict CSP/validation, threat model and risk matrix.
 
-**2-line description:** Defensive privacy-risk platform that converts a 53-question self-assessment into a 0-100 risk score, ranked findings and a simulator showing how much each setting change reduces exposure. Uses only synthetic/self-reported data and stores no personal information.
+**Short description:**
 
-**LinkedIn description:** I built the *Social Media Privacy Risk Assessment Framework*, a defensive cybersecurity project that helps people understand how their social-media settings and habits create exposure. Users answer questions about settings (never sharing the data itself); the engine scores 10 categories - profile visibility, personal info, location, content, connections, tagging, account security, third-party apps, social engineering and digital footprint - and returns an explainable score, prioritised recommendations and a simulator. The project demonstrates privacy-by-design, risk scoring, secure API design, data analytics on a 1,200-record synthetic dataset, threat modelling and automated security testing. No real profiles are scraped or tracked.
+- Defensive privacy-risk platform that turns a 53-question self-assessment into a 0-100 risk score.
+- Gives ranked findings and a simulator showing how much each setting change reduces exposure.
+- Uses only synthetic or self-reported data and stores no personal information.
 
-**Skills:** Cybersecurity, Privacy Risk Assessment, Privacy by Design, Digital Footprint Analysis, Social Engineering Awareness, Risk Scoring, GRC concepts, Python, Flask, SQLite, REST APIs, Data Analytics, Security Awareness, Threat Modelling, pytest.
+**LinkedIn description:**
+
+- I built the *Social Media Privacy Risk Assessment Framework*, a defensive cybersecurity project.
+- Users answer questions about settings and habits, never sharing the data itself.
+- The engine scores 10 categories:
+  - Profile visibility
+  - Personal info
+  - Location
+  - Content
+  - Connections
+  - Tagging
+  - Account security
+  - Third-party apps
+  - Social engineering
+  - Digital footprint
+- It returns an explainable score, prioritised recommendations and a what-if simulator.
+- It demonstrates:
+  - Privacy-by-design
+  - Risk scoring
+  - Secure API design
+  - Data analytics on a 1,200-record synthetic dataset
+  - Threat modelling
+  - Automated security testing
+- No real profiles are scraped or tracked.
+
+**Skills:**
+
+- Cybersecurity, Privacy Risk Assessment, Privacy by Design
+- Digital Footprint Analysis, Social Engineering Awareness
+- Risk Scoring, GRC concepts, Threat Modelling
+- Python, Flask, SQLite, REST APIs
+- Data Analytics, Security Awareness, pytest

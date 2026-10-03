@@ -5,22 +5,54 @@
 ![Dashboard](screenshots/18_privacy_dashboard.png)
 
 ## Overview
-A privacy-risk assessment platform. A user answers **53 questions about social-media settings and habits** (never the sensitive data itself) and receives a **0-100 Privacy Risk Score**, risk level, 10 category scores, ranked weaknesses, prioritised recommendations, a what-if simulator, a printable checklist, an HTML/PDF report and an analytics dashboard built on a **1,200-record synthetic dataset**.
+- A privacy-risk assessment platform for social-media exposure.
+- The user answers **53 questions about settings and habits** (never the sensitive data itself).
+- The user receives:
+  - A **0-100 Privacy Risk Score** and risk level
+  - 10 category scores
+  - Ranked weaknesses and prioritised recommendations
+  - A what-if simulator
+- Extras:
+  - A printable checklist
+  - An HTML/PDF report
+  - An analytics dashboard built on a **1,200-record synthetic dataset**
 
 ## Problem Statement
-Oversharing and weak settings (public phone number, live location, no MFA, open tagging…) make doxxing, impersonation and social engineering easier. People rarely get structured, explainable feedback about their exposure.
+- Oversharing and weak settings make doxxing, impersonation and social engineering easier.
+- Typical weak spots: public phone number, live location, no MFA, open tagging.
+- People rarely get structured, explainable feedback about their exposure.
 
 ## Objectives
-Assess exposure in 10 areas · explain every point of the score · recommend prioritised fixes · simulate improvements · educate · practise privacy-by-design.
+- Assess exposure in 10 areas.
+- Explain every point of the score.
+- Recommend prioritised fixes.
+- Simulate improvements.
+- Educate users.
+- Practise privacy-by-design.
 
 ## Cybersecurity Relevance
-Security awareness, privacy engineering, GRC, IAM (MFA/recovery/sessions/third-party grants), SOC-style account-takeover hygiene and application security (validation, XSS, rate limiting, secure headers, tests). See [docs/01_PROJECT_EXPLANATION.md](docs/01_PROJECT_EXPLANATION.md).
+- Security awareness and privacy engineering
+- GRC (governance, risk and compliance)
+- IAM: MFA, recovery, sessions and third-party grants
+- SOC-style account-takeover hygiene
+- Application security: validation, XSS defence, rate limiting, secure headers and tests
+- Details: [docs/01_PROJECT_EXPLANATION.md](docs/01_PROJECT_EXPLANATION.md)
 
 ## Privacy vs Security
-Privacy = control over what information is exposed. Security = protecting accounts from unauthorised access. **Strong account security ≠ strong privacy**: a strong password and MFA do not hide a public phone number and live location.
+- **Privacy:** control over what information is exposed.
+- **Security:** protecting accounts from unauthorised access.
+- **Strong account security ≠ strong privacy.**
+- Example: a strong password and MFA do not hide a public phone number and live location.
 
 ## Features
-53-question wizard · input validation · feature extraction · 10 category scores · configurable weighted overall score · LOW/MODERATE/HIGH/CRITICAL · findings engine · recommendation engine (IMMEDIATE / IMPORTANT / GOOD PRACTICE) · **improvement simulator** · **dense analytics dashboard (15 panels)** · printable checklist · HTML/PDF report · local photo-metadata viewer/cleaner · SQLite privacy-first storage · REST API · 54 automated tests.
+- **Assessment:** 53-question wizard with input validation
+- **Scoring:** feature extraction, 10 category scores, configurable weighted overall score, LOW / MODERATE / HIGH / CRITICAL
+- **Guidance:** findings engine and recommendation engine (IMMEDIATE / IMPORTANT / GOOD PRACTICE)
+- **Simulator:** improvement simulator showing before/after scores
+- **Dashboard:** dense analytics dashboard with 15 panels
+- **Outputs:** printable checklist, HTML/PDF report
+- **Tools:** local photo-metadata viewer and cleaner
+- **Platform:** SQLite privacy-first storage, REST API, 54 automated tests
 
 ## Architecture
 ```
@@ -33,28 +65,77 @@ Details and diagrams: [docs/02_ARCHITECTURE_AND_API.md](docs/02_ARCHITECTURE_AND
 Python 3.10+ · Flask · SQLite · Pillow (metadata tool) · HTML/CSS/vanilla JS · hand-written SVG charts (no CDN, works offline) · pytest.
 
 ## Privacy Questionnaire
-53 questions in 10 categories A-J → [docs/QUESTIONNAIRE.md](docs/QUESTIONNAIRE.md). Answers are PUBLIC/FRIENDS/PRIVATE, YES/NO/SOMETIMES/NOT SURE, etc. No phone numbers, addresses, passwords or birth dates are ever typed.
+- 53 questions in 10 categories (A-J). Full list: [docs/QUESTIONNAIRE.md](docs/QUESTIONNAIRE.md)
+- Answer styles: PUBLIC / FRIENDS / PRIVATE, YES / NO / SOMETIMES / NOT SURE, and similar.
+- No phone numbers, addresses, passwords or birth dates are ever typed.
 
 ## Risk Categories & Weights
-Profile 10 · Personal Info 15 · Location 15 · Content 10 · Connections 10 · Tagging 5 · Account Security 15 · Third-Party Apps 5 · Social Engineering 10 · Digital Footprint 5 (configurable in `backend/config.py` or `CATEGORY_WEIGHTS_JSON`).
+- Profile: **10**
+- Personal Info: **15**
+- Location: **15**
+- Content: **10**
+- Connections: **10**
+- Tagging: **5**
+- Account Security: **15**
+- Third-Party Apps: **5**
+- Social Engineering: **10**
+- Digital Footprint: **5**
+- Configurable in `backend/config.py` or with `CATEGORY_WEIGHTS_JSON`.
 
 ## Risk Scoring
-`category = 100 × Σ(w·risk)/Σw`, `overall = Σ(categoryWeight × category)/Σ weights`. **0-20 LOW · 21-40 MODERATE · 41-70 HIGH · 71-100 CRITICAL.** Higher = higher exposure. *Weights and thresholds are educational assumptions and must be validated before professional risk decisions. The score is not a guarantee that an account will or will not be compromised.*
+- **Category score:** `100 × Σ(w·risk) / Σw`
+- **Overall score:** `Σ(categoryWeight × category) / Σ weights`
+- **Risk levels:**
+  - 0-20 = LOW
+  - 21-40 = MODERATE
+  - 41-70 = HIGH
+  - 71-100 = CRITICAL
+- Higher score = higher exposure.
+- *Weights and thresholds are educational assumptions and must be validated before professional risk decisions.*
+- *The score is not a guarantee that an account will or will not be compromised.*
 
 ## Privacy Findings / Recommendation Engine / Improvement Simulator
-`generate_privacy_findings()` ranks risky answers by exact points; `generate_recommendations()` prioritises fixes; `simulate_improvement()` re-scores a copy of your answers with chosen fixes ("72 → 34, risk reduction 38"). Labelled as a *framework simulation*.
+- **Findings:** `generate_privacy_findings()` ranks risky answers by their exact point contribution.
+- **Recommendations:** `generate_recommendations()` prioritises the fixes.
+- **Simulator:** `simulate_improvement()` re-scores a copy of your answers with the chosen fixes (for example 72 → 34, a 38-point reduction).
+- The simulator is labelled as a *framework simulation*.
 
 ## Digital Footprint · Social Engineering Awareness · Account Security
-Covered by categories J, I and G, with defensive guidance in the docs (no attack scripts or message templates exist in this repo).
+- Covered by categories **J** (footprint), **I** (social engineering) and **G** (account security).
+- Defensive guidance is in the docs.
+- No attack scripts or message templates exist in this repository.
 
 ## Privacy Dashboard
-Open `/dashboard`: 6 KPI cards, radar, category breakdown, gauge, top weaknesses, account-security controls, digital-footprint panel, before/after comparison, biggest single wins, heat-map, risk distribution, histogram, 12-month trend, segment comparison, action plan and awareness corner. Works with your own assessment or the fictional demo profile.
+- Open `/dashboard`.
+- **Top row:** 6 KPI cards.
+- **Category views:** radar, category breakdown, gauge.
+- **Weaknesses and controls:** top weaknesses, account-security controls, digital-footprint panel.
+- **Improvement:** before/after comparison, biggest single wins, heat-map.
+- **Cohort views:** risk distribution, histogram, 12-month trend, segment comparison.
+- **Guidance:** action plan and awareness corner.
+- Works with your own assessment or the fictional demo profile.
 
 ## Privacy Report
-`/api/assessment/{id}/report` → standalone HTML (Assessment ID, date, score, level, categories, findings, recommendations, priority actions, checklist, disclaimer). Use *Print → Save as PDF*. No sensitive data included.
+- Route: `/api/assessment/{id}/report` returns a standalone HTML report.
+- Contents:
+  - Assessment ID and date
+  - Score and level
+  - Category scores
+  - Findings and recommendations
+  - Priority actions
+  - Checklist and disclaimer
+- Use *Print → Save as PDF* to export.
+- No sensitive data is included.
 
 ## Privacy by Design
-Data minimisation (only scores + finding types stored, never answers) · purpose limitation · least privilege · privacy by default (127.0.0.1) · transparency · user control (delete) · retention limitation (30 days) · secure processing.
+- **Data minimisation:** only scores and finding types are stored, never answers.
+- **Purpose limitation:** data is used only to show your result.
+- **Least privilege:** no accounts and no external calls.
+- **Privacy by default:** the server binds to 127.0.0.1.
+- **Transparency:** scoring is open and explainable.
+- **User control:** you can delete your assessment at any time.
+- **Retention limitation:** records auto-delete after 30 days.
+- **Secure processing:** validation, escaping, headers and rate limiting.
 
 ## Installation
 ```bash
@@ -73,10 +154,25 @@ python -m backend.app
 ```
 
 ## Usage
-1. Open **Assessment** (or click *Fill with demo profile*). 2. Answer all 10 sections → *Calculate my score*. 3. Review score, category radar, findings, recommendations. 4. Tick fixes in the **Simulator** and watch the score change. 5. Open **Dashboard** to compare with the cohort. 6. *View report* → Print → Save as PDF. 7. Use **Checklist** and the **Metadata Tool**. 8. *Delete my assessment* when done.
+1. Open **Assessment** (or click *Fill with demo profile*).
+2. Answer all 10 sections, then click *Calculate my score*.
+3. Review the score, radar, findings and recommendations.
+4. Tick fixes in the **Simulator** and watch the score change.
+5. Open the **Dashboard** to compare with the cohort.
+6. Click *View report*, then Print → Save as PDF.
+7. Use the **Checklist** and the **Metadata Tool**.
+8. Click *Delete my assessment* when done.
 
 ## API Documentation
-See [docs/02_ARCHITECTURE_AND_API.md](docs/02_ARCHITECTURE_AND_API.md). Main routes: `POST /api/assessment`, `GET /api/assessment/{id}`, `GET /api/assessment/{id}/recommendations`, `POST /api/assessment/simulate-improvement`, `GET /api/dashboard/stats`, `GET /api/privacy-checklist`, `DELETE /api/assessment/{id}`.
+- Full details: [docs/02_ARCHITECTURE_AND_API.md](docs/02_ARCHITECTURE_AND_API.md)
+- Main routes:
+  - `POST /api/assessment`
+  - `GET /api/assessment/{id}`
+  - `GET /api/assessment/{id}/recommendations`
+  - `POST /api/assessment/simulate-improvement`
+  - `GET /api/dashboard/stats`
+  - `GET /api/privacy-checklist`
+  - `DELETE /api/assessment/{id}`
 
 ## Testing
 ```bash
@@ -88,22 +184,51 @@ python scripts/generate_docs.py     # regenerates QUESTIONNAIRE / DEMO_RESULTS /
 See [docs/SECURITY_PRIVACY_TESTING.md](docs/SECURITY_PRIVACY_TESTING.md).
 
 ## Results
-Fictional demo profile: **79/100 CRITICAL → 50/100 HIGH** after the brief's improvements (−29 pts) - [docs/DEMO_RESULTS.md](docs/DEMO_RESULTS.md). Synthetic cohort (n=1,200): average ≈ 44; ~18% LOW, 26% MODERATE, 42% HIGH, 13% CRITICAL.
+- **Demo profile:** **79/100 CRITICAL → 50/100 HIGH** after the brief's improvements (−29 pts). See [docs/DEMO_RESULTS.md](docs/DEMO_RESULTS.md).
+- **Synthetic cohort (n = 1,200):**
+  - Average score ≈ 44
+  - LOW ≈ 18%
+  - MODERATE ≈ 26%
+  - HIGH ≈ 42%
+  - CRITICAL ≈ 13%
 
 ## Limitations
-Self-reported answers · assumed (not empirically calibrated) weights · synthetic data · platform settings change · measures exposure, not likelihood of compromise.
+- Answers are self-reported.
+- Weights are assumed, not empirically calibrated.
+- The dataset is synthetic.
+- Platform settings change over time.
+- The model measures exposure, not the likelihood of compromise.
 
 ## Future Improvements
-Platform-specific checklists · organisational policies · awareness quizzes · privacy-maturity scoring · family/teen modules · enterprise training · GRC reporting · calibration · localisation · accessibility · report comparison over time · local-only mode. No scraping or invasive monitoring.
+- Platform-specific checklists
+- Organisational policies
+- Awareness quizzes
+- Privacy-maturity scoring
+- Family and teen modules
+- Enterprise training and GRC reporting
+- Model calibration
+- Localisation and accessibility
+- Report comparison over time
+- Local-only mode
+- No scraping or invasive monitoring
 
 ## Screenshots
 See [`screenshots/`](screenshots/) and the checklist in [docs/04_GITHUB_AND_PROOF.md](docs/04_GITHUB_AND_PROOF.md).
 
 ## Learning Outcomes
-Risk modelling · privacy engineering · secure API design · threat modelling · data analytics · testing · ethical, defensive project scoping.
+- Risk modelling
+- Privacy engineering
+- Secure API design
+- Threat modelling
+- Data analytics
+- Testing
+- Ethical, defensive project scoping
 
 ## Ethical Disclaimer
-Defensive education only. Use synthetic or your own voluntary answers. Do not use this project to scrape, profile, track or access any real person's accounts.
+- Defensive education only.
+- Use synthetic data or your own voluntary answers.
+- Do not use this project to scrape, profile or track anyone.
+- Do not use it to access any real person's accounts.
 
 ## Author
-*Your Name* - Cybersecurity student · [LinkedIn](#) · [GitHub](#)
+*Shikha* - Cybersecurity student
