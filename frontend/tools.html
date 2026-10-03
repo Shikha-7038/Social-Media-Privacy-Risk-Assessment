@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Photo Metadata Tool</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header id="nav"></header>
+<main class="wrap" style="padding-top:22px"><h1>Photo Metadata Viewer &amp; Cleaner</h1>
+  <p class="muted" style="max-width:760px">Photos can carry hidden metadata (device model, timestamp, sometimes GPS). Choose one of <b>your own</b> photos: it is read in memory by <b>your own local server</b>, never saved or sent anywhere, and nothing is inferred beyond the metadata actually present.</p>
+  <div class="grid12"><section class="card s5"><h3>1 · Choose an image</h3>
+    <label class="dropbox" id="drop">📷 Click or drop a JPEG / PNG / WEBP / TIFF<input type="file" id="file" accept="image/*" hidden></label>
+    <div id="preview" style="margin-top:12px"></div></section>
+  <section class="card s7"><h3>2 · What the file reveals</h3><div id="out" class="muted">Nothing loaded yet.</div></section></div>
+</main><div id="footer"></div>
+<script src="/js/common.js"></script><script src="/js/tools.js"></script></body></html>

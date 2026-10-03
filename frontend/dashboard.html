@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Dashboard · Social Media Privacy Risk Framework</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><header id="nav"></header>
+<main class="wrap" style="padding-top:22px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+    <div><h1 style="margin-bottom:4px">Cybersecurity Privacy Dashboard</h1>
+      <div class="muted" id="subtitle">Loading…</div></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap" class="no-print">
+      <button class="btn sm" id="srcMine" hidden>My assessment</button>
+      <button class="btn sm" id="srcDemo">Demo profile</button>
+      <a class="btn sm" id="viewResults" href="#">Full results</a>
+      <a class="btn primary" href="/assessment">▶ Start Privacy Assessment</a>
+    </div>
+  </div>
+  <div id="dash" class="fade">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid12" id="rows"></div>
+  </div>
+  <div id="err" class="banner" hidden></div>
+</main><div id="footer"></div>
+<script src="/js/common.js"></script><script src="/js/charts.js"></script><script src="/js/dashboard.js"></script>
+</body></html>
